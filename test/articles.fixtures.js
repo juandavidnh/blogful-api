@@ -31,6 +31,27 @@ function makeArticlesArray() {
     ];
 }
 
+function makeMaliciousArticle() {
+    const maliciousArticle = {
+        id: 911,
+        style: 'How-to',
+        date_published: new Date().toISOString(),
+        title: 'Naughty <script>alert("xss");</script>',
+        content: `Bad image <img src="https://url.to.file.which/does-not.exist" onerror="alert(document.cookie);">. But not <strong>all</strong> bad.`,
+    }
+    const expectedArticle = {
+        ...maliciousArticle,
+        title: 'Naughty &lt;script&gt;alert(\"xss\");&lt;/script&gt;',
+        content: `Bad image <img src="https://url.to.file.which/does-not.exist">. But not <strong>all</strong> bad.`,
+    }
+
+    return {
+        maliciousArticle,
+        expectedArticle,
+    }
+}
+
 module.exports = {
     makeArticlesArray,
+    makeMaliciousArticle,
 }
