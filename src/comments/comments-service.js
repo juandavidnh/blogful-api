@@ -15,7 +15,7 @@ const CommentsService = {
 
     getById(knex, id) {
         return knex
-            .from('bloful_comments')
+            .from('blogful_comments')
             .select('*')
             .where('id', id)
             .first()

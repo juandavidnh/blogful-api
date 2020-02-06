@@ -72,7 +72,7 @@ commentsRouter
     .get((req, res, next) => {
         res.json(serializeComment(res.comment))
     })
-    .delete((req, res, get) => {
+    .delete((req, res, next) => {
         CommentsService.deleteComment(
             req.app.get('db'),
             req.params.comment_id
